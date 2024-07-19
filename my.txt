@@ -1,0 +1,29 @@
+{
+  0 = {
+    name                  = "CPU Usage Alert"
+    entity_guid           = "your_cpu_entity_guid"
+    query                 = "SELECT average(cpuPercent) FROM ProcessSample WHERE entityGuid = '${your_cpu_entity_guid}'"
+    critical_threshold    = 90
+    warning_threshold     = 0
+    create_critical_block = true
+    create_warning_block  = false
+  }
+  1 = {
+    name                  = "Memory Usage Alert"
+    entity_guid           = "your_memory_entity_guid"
+    query                 = "SELECT average(memoryUsedBytes/memoryTotalBytes*100) AS 'memoryPercent' FROM ProcessSample WHERE entityGuid = '${your_memory_entity_guid}'"
+    critical_threshold    = 0
+    warning_threshold     = 70
+    create_critical_block = false
+    create_warning_block  = true
+  }
+  2 = {
+    name                  = "Disk Usage Alert"
+    entity_guid           = "your_disk_entity_guid"
+    query                 = "SELECT average(diskUsedPercent) FROM StorageSample WHERE entityGuid = '${your_disk_entity_guid}'"
+    critical_threshold    = 85
+    warning_threshold     = 70
+    create_critical_block = true
+    create_warning_block  = true
+  }
+}
