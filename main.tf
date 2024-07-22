@@ -27,14 +27,14 @@ resource "newrelic_nrql_alert_condition" "one" {
     query = each.value.query
   }
   
-  dynamic "critical" {
-  for_each = each.value.create_critical_block ? [1] :[]
-  content {
+  critical {
+  
+  
       operator              = "above"
       threshold             = each.value.critical_threshold
       threshold_duration    = 300
       threshold_occurrences = "ALL"
-    }
+    
   }
 
   dynamic "warning" {
@@ -46,6 +46,7 @@ resource "newrelic_nrql_alert_condition" "one" {
       threshold_occurrences = "ALL"
    }
   }
+  depends_on = [  ]
 
 
 }
